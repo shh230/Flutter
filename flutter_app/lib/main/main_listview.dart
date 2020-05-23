@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/listView/rand_words.dart';
-import 'package:flutterapp/stateManager/tapBox.dart';
+import 'package:flutterapp/stateManage/fixManage/parentWidgetC.dart';
+import 'package:flutterapp/stateManage/parentManage/parentWidgetB.dart';
+import 'package:flutterapp/stateManage/selfManage/tapBox.dart';
 
 class MainListView extends StatelessWidget {
   final _dataSource = <Map>[
     {'name': '名字生成器列表', 'type': 0},
-    {'name': '状态管理', 'type': 1}
+    {'name': '自身状态管理', 'type': 1},
+    {'name': '父类状态管理', 'type': 2},
+    {'name': '混合状态管理', 'type': 3}
   ];
   final _biggerFont = const TextStyle(fontSize: 18.0); // 展示的样式
 
@@ -48,6 +52,12 @@ class MainListView extends StatelessWidget {
         break;
       case 1:
         router = TapBoxA();
+        break;
+      case 2:
+        router = ParentWidgetB();
+        break;
+      case 3:
+        router = ParentWidgetC();
         break;
       default:
         break;

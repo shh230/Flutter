@@ -1,5 +1,8 @@
 # Flutter Exercise
 
 ## flutter_app1
-* 名字生成器
-* ListView 的简单使用
+
+### 功能
+
+* 名字生成器列表
+* 状态管理

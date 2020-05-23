@@ -20,7 +20,7 @@ class _TapBoxAState extends State<TapBoxA> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text('状态管理'),
+        title: Text('自身状态管理'),
       ),
       body: _initView(),
     );
@@ -29,7 +29,7 @@ class _TapBoxAState extends State<TapBoxA> {
   // 初始化试图
   Widget _initView() {
     return Center(
-      child: new GestureDetector(
+      child: GestureDetector(
         onTap: _handleTap,
         child: Container(
           child: Center(
