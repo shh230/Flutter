@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'listView/random_words.dart';
-bool debugPrintMarkNeedsLayoutStacks = false;
+import 'main/main_listview.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '第一个Flutter应用',
-      home: RandomWords(),
+      home: MainListView(),
     );
   }
 }

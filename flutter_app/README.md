@@ -1,6 +1,6 @@
-# flutterexercise
+# flutterapp
 
-Flutter Exercise
+A new Flutter application.
 
 ## Getting Started
 

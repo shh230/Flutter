@@ -1,4 +1,4 @@
-package com.shh230.flutterapp1
+package com.shh230.flutterapp
 
 import io.flutter.embedding.android.FlutterActivity
 
