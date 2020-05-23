@@ -3,13 +3,15 @@ import 'package:flutterapp/listView/rand_words.dart';
 import 'package:flutterapp/stateManage/fixManage/parentWidgetC.dart';
 import 'package:flutterapp/stateManage/parentManage/parentWidgetB.dart';
 import 'package:flutterapp/stateManage/selfManage/tapBox.dart';
+import 'package:flutterapp/textView/textWidget.dart';
 
 class MainListView extends StatelessWidget {
   final _dataSource = <Map>[
     {'name': '名字生成器列表', 'type': 0},
     {'name': '自身状态管理', 'type': 1},
     {'name': '父类状态管理', 'type': 2},
-    {'name': '混合状态管理', 'type': 3}
+    {'name': '混合状态管理', 'type': 3},
+    {'name': '文本及样式', 'type': 4},
   ];
   final _biggerFont = const TextStyle(fontSize: 18.0); // 展示的样式
 
@@ -58,6 +60,9 @@ class MainListView extends StatelessWidget {
         break;
       case 3:
         router = ParentWidgetC();
+        break;
+      case 4:
+        router = TextWidget();
         break;
       default:
         break;
