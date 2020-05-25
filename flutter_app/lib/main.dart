@@ -9,6 +9,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '第一个Flutter应用',
       home: MainListView(),
+      theme: ThemeData(
+        primaryColor: Colors.red
+      ),
     );
   }
 }
