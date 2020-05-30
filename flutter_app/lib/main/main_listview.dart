@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/button/buttonView.dart';
+import 'package:flutterapp/button/button_page.dart';
 import 'package:flutterapp/image/imageView.dart';
 import 'package:flutterapp/listView/rand_words.dart';
 import 'package:flutterapp/selectionBox/boxView.dart';
 import 'package:flutterapp/stateManage/fixManage/parentWidgetC.dart';
 import 'package:flutterapp/stateManage/parentManage/parentWidgetB.dart';
 import 'package:flutterapp/stateManage/selfManage/tapBox.dart';
+import 'package:flutterapp/textFieldAndForm/textfiled_form_page.dart';
 import 'package:flutterapp/textView/textWidget.dart';
 
 class MainListView extends StatelessWidget {
@@ -18,6 +19,7 @@ class MainListView extends StatelessWidget {
     {'name': '按钮', 'type': 5},
     {'name': '图片和Icon', 'type': 6},
     {'name': '单选框和复选框', 'type': 7},
+    {'name': '输入框和表单', 'type': 8},
   ];
   final _biggerFont = const TextStyle(fontSize: 18.0); // 展示的样式
 
@@ -38,7 +40,7 @@ class MainListView extends StatelessWidget {
           item['name'],
           style: _biggerFont,
         ),
-        onTap: () => _handleItemClick(context, item['type']),
+        onTap: () => _handleItemClick(context, item),
       );
     });
 
@@ -50,11 +52,13 @@ class MainListView extends StatelessWidget {
     );
   }
 
-  void _handleItemClick(BuildContext context, int type) {
+  void _handleItemClick(BuildContext context, Map item) {
     var router;
+    String _title = item['name'];
+    int _type = item['type'];
 
     // 处理需要跳转的路由
-    switch(type) {
+    switch(_type) {
       case 0:
         router = RandomWords();
         break;
@@ -78,6 +82,9 @@ class MainListView extends StatelessWidget {
         break;
       case 7:
         router = BoxMainView();
+        break;
+      case 8:
+        router = TextFiledAndFormPage(title: _title,);
         break;
       default:
         break;
