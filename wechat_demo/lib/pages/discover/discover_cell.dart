@@ -42,7 +42,7 @@ class _DiscoverCellState extends State<DiscoverCell> {
       },
       onTapDown: (TapDownDetails details) {
         setState(() {
-          _currentColor = weChatThemeColor;
+          _currentColor = WeChatThemeColor;
         });
       },
       onTapUp: (TapUpDetails details) {

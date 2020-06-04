@@ -15,7 +15,7 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class _DiscoverPageState extends State<DiscoverPage> {
-  Color _themeColor = weChatThemeColor;
+  Color _themeColor = WeChatThemeColor;
 
   @override
   Widget build(BuildContext context) {

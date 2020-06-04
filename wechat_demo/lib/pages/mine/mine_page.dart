@@ -102,13 +102,13 @@ class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: weChatThemeColor,
+        backgroundColor: WeChatThemeColor,
         body: Stack(
           alignment: Alignment.center,
           fit: StackFit.expand,
           children: <Widget>[
             Container(
-                color: weChatThemeColor,
+                color: WeChatThemeColor,
                 child: MediaQuery.removePadding(
                   context: context,
                   removeTop: true,

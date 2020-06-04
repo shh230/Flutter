@@ -23,7 +23,7 @@ class _DiscoverChildPageState extends State<DiscoverChildPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: weChatThemeColor,
+        backgroundColor: WeChatThemeColor,
         centerTitle: true,
         elevation: 0.0, // 导航栏下面的阴影
       ),

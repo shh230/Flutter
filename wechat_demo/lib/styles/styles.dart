@@ -7,7 +7,7 @@
  */
 import 'package:flutter/material.dart';
 
-final Color weChatThemeColor = Color.fromRGBO(237, 237, 237, 1.0);
+final Color WeChatThemeColor = Color.fromRGBO(237, 237, 237, 1.0);
 
-double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
-double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+double ScreenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+double ScreenHeight(BuildContext context) => MediaQuery.of(context).size.height;
