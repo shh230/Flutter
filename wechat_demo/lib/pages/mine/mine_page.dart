@@ -22,16 +22,16 @@ class _MinePageState extends State<MinePage> {
   Widget _headerWidget() {
     return Container(
       color: Colors.white,
-      height: 320,
+      height: 220,
       child: Container(
-        margin: EdgeInsets.only(top: 150, bottom: 50),
+        margin: EdgeInsets.only(top: 100, bottom: 20),
         child: Row(
           children: <Widget>[
             /// 头像 left
             Container(
-              height: 100,
-              width: 100,
-              margin: EdgeInsets.only(left: 35),
+              height: 65,
+              width: 65,
+              margin: EdgeInsets.only(left: 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
@@ -41,9 +41,9 @@ class _MinePageState extends State<MinePage> {
             /// 右侧信息
             Expanded(
               child: Container(
-                height: 100,
+                height: 65,
                 padding:
-                    EdgeInsets.only(left: 30, top: 8, right: 20, bottom: 8),
+                    EdgeInsets.only(left: 20, top: 2, right: 10, bottom: 3),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -65,9 +65,9 @@ class _MinePageState extends State<MinePage> {
                         /// 微信号
                         Expanded(
                           child: Text(
-                            '微信号:shh230',
+                            '微信号:  shh230',
                             style: TextStyle(
-                                fontSize: 18.0,
+                                fontSize: 16.0,
                                 color: Color.fromRGBO(128, 132, 133, 1)
                             ),
                           ),

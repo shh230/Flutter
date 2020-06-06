@@ -57,7 +57,7 @@ class _DiscoverCellState extends State<DiscoverCell> {
       },
       child: Container(
         height: 54,
-        padding: EdgeInsets.symmetric(horizontal: 25.0),
+        padding: EdgeInsets.only(left: 20.0, right: 10),
         color: _currentColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
