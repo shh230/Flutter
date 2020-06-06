@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wechat_demo/styles/const.dart';
 import 'package:wechat_demo/styles/styles.dart';
 
 class FriendsCell extends StatelessWidget {
@@ -14,7 +15,7 @@ class FriendsCell extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: groupTitle != null ? 35 : 0,
+          height: groupTitle != null ? sectionHeight : 0,
           color: Color.fromRGBO(236, 237, 238, 1),
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(left: 20),
@@ -27,7 +28,7 @@ class FriendsCell extends StatelessWidget {
               : null,
         ),
         Container(
-          height: 50,
+          height: cellHeight,
           color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Row(

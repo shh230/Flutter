@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:wechat_demo/styles/styles.dart';
 
 class IndexBar extends StatefulWidget {
+  final void Function(String letter) IndexBarCallBack;
+
+  IndexBar({this.IndexBarCallBack});
+
   @override
   _IndexBarState createState() => _IndexBarState();
 }
@@ -32,56 +36,69 @@ class _IndexBarState extends State<IndexBar> {
       right: 0,
       top: ScreenHeight(context) / 8,
       height: ScreenHeight(context) / 2,
-      width: 120,
+      width: 100,
       child: Row(
         children: [
           Container(
             alignment: Alignment(0, _indicatorY),
-            width: 100,
-            color: Colors.grey,
-            child: Stack(
-              alignment: Alignment(-0.2, 0),
-              children: [
-                Image(
-                  image: AssetImage('images/气泡.png'),
-                  width: 60,
-                ),
-                Text(
-                  _indicatorText,
-                  style: TextStyle(fontSize: 35, color: Colors.white),
-                )
-              ],
-            ),
+            width: 80,
+            child: _indicatorHidden
+                ? null
+                : Stack(
+                    alignment: Alignment(-0.2, 0),
+                    children: [
+                      Image(
+                        image: AssetImage('images/气泡.png'),
+                        width: 60,
+                      ),
+                      Text(
+                        _indicatorText,
+                        style: TextStyle(fontSize: 30, color: Colors.white),
+                      )
+                    ],
+                  ),
           ),
           GestureDetector(
             child: Container(
               width: 20,
+              color: _bkColor,
               child: Column(
                 children: _wordsViews,
               ),
             ),
             onVerticalDragUpdate: (DragUpdateDetails details) {
               int index = getIndex(context, details.globalPosition);
-              print(2.18 / 28 * index - 1.09);
+              int length = INDEX_WORDS.length;
+              // 每一个字母所占的偏移量的大小
+              final letterOffsetHeight = 2.25 / length;
+              // 计算出每一个字母最底部的位置的偏移量，再减去每个字母高度的一半，就是字母中心的位置
+              final indicatorOffsetY =
+                  ((index + 1) - (length / 2)) * letterOffsetHeight -
+                      letterOffsetHeight / 2;
               setState(() {
-                _bkColor = Colors.green;
                 _indicatorText = INDEX_WORDS[index];
-                _indicatorY = 2.18 / 28 * index - 1.09;
+                _indicatorY = indicatorOffsetY;
               });
+              widget.IndexBarCallBack(INDEX_WORDS[index]);
             },
             onVerticalDragDown: (DragDownDetails details) {
               int index = getIndex(context, details.globalPosition);
-              print(2.18 / 28 * index - 1.09);
+              int length = INDEX_WORDS.length;
+              // 每一个字母所占的偏移量的大小
+              final letterOffsetHeight = 2.25 / length;
+              // 计算出每一个字母最底部的位置的偏移量，再减去每个字母高度的一半，就是字母中心的位置
+              final indicatorOffsetY =
+                  ((index + 1) - (length / 2)) * letterOffsetHeight -
+                      letterOffsetHeight / 2;
               setState(() {
-                _bkColor = Colors.green;
                 _indicatorText = INDEX_WORDS[index];
                 _indicatorHidden = false;
-                _indicatorY = 2.18 / 28 * index - 1.09;
+                _indicatorY = indicatorOffsetY;
               });
+              widget.IndexBarCallBack(INDEX_WORDS[index]);
             },
             onVerticalDragEnd: (DragEndDetails details) {
               setState(() {
-                _bkColor = Colors.green;
                 _indicatorHidden = true;
               });
             },

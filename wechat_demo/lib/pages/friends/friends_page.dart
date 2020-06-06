@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:wechat_demo/pages/discover/discover_child_page.dart';
 import 'package:wechat_demo/pages/friends/friends_cell.dart';
+import 'package:wechat_demo/styles/const.dart';
 import 'package:wechat_demo/styles/styles.dart';
 
 import 'friends_data.dart';
@@ -26,7 +27,15 @@ class _FriendsPageState extends State<FriendsPage> {
     Friends(imageUrl: 'images/公众号.png', name: '公众号'),
   ];
 
+  // 存储列表的偏移量
+  final Map<String, double> _groupOffsetMap = {
+    INDEX_WORDS[0]: 0.0,
+    INDEX_WORDS[1]: 0.0,
+  };
+
   final List<Friends> _listData = [];
+
+  ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -36,6 +45,28 @@ class _FriendsPageState extends State<FriendsPage> {
     _listData.sort((Friends a, Friends b) {
       return a.indexLetter.compareTo(b.indexLetter);
     });
+
+    final _cellHeight = cellHeight + dividerHeight; // cell 的高度（带灰色线条）
+    final _headerHeight = _cellHeight + sectionHeight + dividerHeight; // 带 section 的 cell 的高度
+    double _groupOffset = _cellHeight * 4;
+    for (int i = 0; i < _listData.length; i++) {
+      if (i < 1) {
+        _groupOffsetMap.addAll({_listData[i].indexLetter : _groupOffset});
+        // 保存完毕后增加偏移量
+        _groupOffset += _headerHeight;
+      } else if (_listData[i].indexLetter == _listData[i - 1].indexLetter) {
+        _groupOffset += _cellHeight;
+      } else {
+        _groupOffsetMap.addAll({_listData[i].indexLetter : _groupOffset});
+        _groupOffset += _headerHeight;
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   Widget _buildItemCell(BuildContext context, int index) {
@@ -91,11 +122,21 @@ class _FriendsPageState extends State<FriendsPage> {
             Container(
               color: WeChatThemeColor,
               child: ListView.builder(
+                controller: _scrollController,
                 itemCount: _headerData.length + _listData.length,
                 itemBuilder: _buildItemCell,
               ),
             ),
-            IndexBar(),
+            IndexBar(
+              IndexBarCallBack: (letter) {
+                print(letter);
+                print(_groupOffsetMap[letter]);
+                if (_groupOffsetMap[letter] != null) {
+                  _scrollController.animateTo(_groupOffsetMap[letter],
+                      duration: Duration(microseconds: 1), curve: Curves.easeIn);
+                }
+              },
+            ),
           ],
         ));
   }
