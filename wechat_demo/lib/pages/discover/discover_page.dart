@@ -6,6 +6,7 @@
  * @Desc
  */
 import 'package:flutter/material.dart';
+import 'package:wechat_demo/pages/components/divider.dart';
 import 'package:wechat_demo/pages/discover/discover_cell.dart';
 import 'package:wechat_demo/styles/styles.dart';
 
@@ -39,7 +40,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               imageName: 'images/扫一扫2.png',
               title: '扫一扫',
             ),
-            _buildDivider(),
+            SDivider(),
             DiscoverCell(
               imageName: 'images/摇一摇.png',
               title: '摇一摇',
@@ -51,7 +52,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               imageName: 'images/看一看icon.png',
               title: '看一看',
             ),
-            _buildDivider(),
+            SDivider(),
             DiscoverCell(
               imageName: 'images/搜一搜 2.png',
               title: '搜一搜',
@@ -72,7 +73,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               subTitle: '618限时特价',
               subImageName: 'images/badge.png',
             ),
-            _buildDivider(),
+            SDivider(),
             DiscoverCell(
               imageName: 'images/游戏.png',
               title: '游戏',
@@ -87,15 +88,6 @@ class _DiscoverPageState extends State<DiscoverPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildDivider() {
-    return Row(
-      children: <Widget>[
-        Container(width: 60, height: 0.5, color: Colors.white,),
-        Container(height: 0.5, color: _themeColor,)
-      ],
     );
   }
 }
