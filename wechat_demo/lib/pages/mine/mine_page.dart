@@ -6,6 +6,7 @@
  * @Desc
  */
 import 'package:flutter/material.dart';
+import 'package:wechat_demo/pages/components/divider.dart';
 import 'package:wechat_demo/styles/styles.dart';
 
 import '../../styles/styles.dart';
@@ -129,14 +130,17 @@ class _MinePageState extends State<MinePage> {
                         imageName: 'images/微信收藏.png',
                         title: '收藏',
                       ),
+                      SDivider(),
                       DiscoverCell(
                         imageName: 'images/微信相册.png',
                         title: '相册',
                       ),
+                      SDivider(),
                       DiscoverCell(
                         imageName: 'images/微信卡包.png',
                         title: '卡包',
                       ),
+                      SDivider(),
                       DiscoverCell(
                         imageName: 'images/微信表情.png',
                         title: '表情',

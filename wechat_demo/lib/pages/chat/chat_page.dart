@@ -37,7 +37,6 @@ class _ChatPageState extends State<ChatPage> {
     try {
       final response = await client
           .get('http://rap2.taobao.org:38080/app/mock/256965/api/chat/list');
-      print(response.statusCode);
       if (response.statusCode == 200) {
         final responseBody = json.decode(response.body);
         _chatList = responseBody['chatList']

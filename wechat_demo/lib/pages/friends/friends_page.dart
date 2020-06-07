@@ -129,8 +129,6 @@ class _FriendsPageState extends State<FriendsPage> {
             ),
             IndexBar(
               IndexBarCallBack: (letter) {
-                print(letter);
-                print(_groupOffsetMap[letter]);
                 if (_groupOffsetMap[letter] != null) {
                   _scrollController.animateTo(_groupOffsetMap[letter],
                       duration: Duration(microseconds: 1), curve: Curves.easeIn);

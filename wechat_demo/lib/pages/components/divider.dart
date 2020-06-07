@@ -15,8 +15,8 @@ class SDivider extends StatelessWidget {
     final _theBackgroundColor = backgroundColor != null ? backgroundColor : Colors.white;
     return Row(
       children: <Widget>[
-        Container(width: _theLeftWidth, height: 1, color: _theBackgroundColor,),
-        Expanded(child: Container(height: 1, color: _theColor,),)
+        Container(width: _theLeftWidth, height: 0.5, color: _theBackgroundColor,),
+        Expanded(child: Container(height: 0.5, color: _theColor,),)
       ],
     );
   }
