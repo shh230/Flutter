@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '第一个Flutter应用',
+      title: 'Flutter Study',
       home: MainListView(),
       theme: ThemeData(
         primaryColor: Colors.red
