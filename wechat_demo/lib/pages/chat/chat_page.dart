@@ -20,7 +20,7 @@ class ChatPage extends StatefulWidget {
   _ChatPageState createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
   bool _loading = false;
   List<Chat> _chatList = [];
   CancelToken _cancelToken = CancelToken();
@@ -31,6 +31,10 @@ class _ChatPageState extends State<ChatPage> {
     _getData();
   }
 
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+
   // 获取数据
   void _getData() async {
     setState(() {
@@ -39,6 +43,7 @@ class _ChatPageState extends State<ChatPage> {
     try {
       final response = await http
           .get('http://rap2.taobao.org:38080/app/mock/256965/api/chat/list', timeOut: 6000);
+      print('网络请求');
       if (response.statusCode == 200) {
         final responseBody = response.data;
         _chatList = responseBody['chatList']
@@ -77,6 +82,7 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final tiles = _chatList.map((item) {
       return Container(
         color: Colors.white,

@@ -19,7 +19,7 @@ class FriendsPage extends StatefulWidget {
   _FriendsPageState createState() => _FriendsPageState();
 }
 
-class _FriendsPageState extends State<FriendsPage> {
+class _FriendsPageState extends State<FriendsPage> with AutomaticKeepAliveClientMixin {
   final List<Friends> _headerData = [
     Friends(imageUrl: 'images/新的朋友.png', name: '新的朋友'),
     Friends(imageUrl: 'images/群聊.png', name: '群聊'),
@@ -69,6 +69,10 @@ class _FriendsPageState extends State<FriendsPage> {
     super.dispose();
   }
 
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+
   Widget _buildItemCell(BuildContext context, int index) {
     final bool _isHeaderData = index < _headerData.length;
     final item = _isHeaderData
@@ -93,6 +97,7 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         appBar: AppBar(
           title: Text('通讯录'),

@@ -18,7 +18,11 @@ class MinePage extends StatefulWidget {
   _MinePageState createState() => _MinePageState();
 }
 
-class _MinePageState extends State<MinePage> {
+class _MinePageState extends State<MinePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+// TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
   Widget _headerWidget() {
     return Container(
@@ -55,8 +59,7 @@ class _MinePageState extends State<MinePage> {
                         style: TextStyle(
                             fontSize: 21.0,
                             fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(0, 0, 0, 1)
-                        ),
+                            color: Color.fromRGBO(0, 0, 0, 1)),
                       ),
                     ),
 
@@ -69,18 +72,20 @@ class _MinePageState extends State<MinePage> {
                             '微信号:  shh230',
                             style: TextStyle(
                                 fontSize: 16.0,
-                                color: Color.fromRGBO(128, 132, 133, 1)
-                            ),
+                                color: Color.fromRGBO(128, 132, 133, 1)),
                           ),
                         ),
                         Container(
                           child: Row(
                             children: <Widget>[
                               Image(
-                                image: AssetImage('images/ScanQRCode~iphone.png'),
+                                image:
+                                    AssetImage('images/ScanQRCode~iphone.png'),
                                 width: 20,
                               ),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Image(
                                 image: AssetImage('images/icon_right.png'),
                                 width: 15,
@@ -102,6 +107,7 @@ class _MinePageState extends State<MinePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         backgroundColor: WeChatThemeColor,
         body: Stack(
