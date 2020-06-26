@@ -10,7 +10,6 @@ import 'package:wechat_demo/pages/components/divider.dart';
 import 'package:wechat_demo/styles/styles.dart';
 
 import '../../styles/styles.dart';
-import '../../styles/styles.dart';
 import '../discover/discover_cell.dart';
 
 class MinePage extends StatefulWidget {

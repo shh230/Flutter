@@ -10,9 +10,10 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:wechat_demo/pages/chat/chat.dart';
+import 'package:wechat_demo/pages/chat/search_bar.dart';
 import 'package:wechat_demo/pages/components/divider.dart';
 import 'package:wechat_demo/styles/styles.dart';
-//import 'package:http/http.dart' as http;
+
 import 'package:wechat_demo/tools/http_manager.dart' as http;
 
 class ChatPage extends StatefulWidget {
@@ -20,7 +21,8 @@ class ChatPage extends StatefulWidget {
   _ChatPageState createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
+class _ChatPageState extends State<ChatPage>
+    with AutomaticKeepAliveClientMixin {
   bool _loading = false;
   List<Chat> _chatList = [];
   CancelToken _cancelToken = CancelToken();
@@ -41,8 +43,9 @@ class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin 
       _loading = true;
     });
     try {
-      final response = await http
-          .get('http://rap2.taobao.org:38080/app/mock/256965/api/chat/list', timeOut: 6000);
+      final response = await http.get(
+          'http://rap2.taobao.org:38080/app/mock/256965/api/chat/list',
+          timeOut: 6000);
       print('网络请求');
       if (response.statusCode == 200) {
         final responseBody = response.data;
@@ -80,44 +83,44 @@ class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin 
     );
   }
 
+  Widget _buildCellForRow(BuildContext context, int index) {
+    if (index == 0) {
+      return SearchCell(datas: _chatList,);
+    }
+    // 头部插入了搜索框，所以index需要减1，保证数据的准确性
+    index --;
+    final item = _chatList[index];
+    return Column(
+      children: [
+        ListTile(
+          title: Text(item.name),
+          subtitle: Container(
+            height: 25,
+            child: Text(
+              item.message,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: Colors.grey),
+            ),
+          ),
+          leading: Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                image: DecorationImage(image: NetworkImage(item.imageUrl))),
+          ),
+        ),
+        SDivider(
+          leftWidth: 75,
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final tiles = _chatList.map((item) {
-      return Container(
-        color: Colors.white,
-        child: Column(
-          children: [
-            ListTile(
-              title: Text(item.name),
-              subtitle: Container(
-                height: 25,
-                child: Text(
-                  item.message,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-              leading: Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(image: NetworkImage(item.imageUrl))),
-              ),
-            ),
-            SDivider(
-              leftWidth: 75,
-            )
-          ],
-        ),
-      );
-    }).toList();
-
-//    final divides =
-//    ListTile.divideTiles(context: context, tiles: tiles).toList();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('微信'),
@@ -155,8 +158,9 @@ class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin 
             ? Center(
                 child: Text('loading...'),
               )
-            : ListView(
-                children: tiles,
+            : ListView.builder(
+                itemCount: _chatList.length,
+                itemBuilder: _buildCellForRow,
               ),
       ),
     );
