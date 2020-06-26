@@ -7,11 +7,13 @@
  */
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:wechat_demo/pages/chat/chat.dart';
 import 'package:wechat_demo/pages/components/divider.dart';
 import 'package:wechat_demo/styles/styles.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
+import 'package:wechat_demo/tools/http_manager.dart' as http;
 
 class ChatPage extends StatefulWidget {
   @override
@@ -21,6 +23,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   bool _loading = false;
   List<Chat> _chatList = [];
+  CancelToken _cancelToken = CancelToken();
 
   @override
   void initState() {
@@ -33,22 +36,21 @@ class _ChatPageState extends State<ChatPage> {
     setState(() {
       _loading = true;
     });
-    var client = http.Client();
     try {
-      final response = await client
-          .get('http://rap2.taobao.org:38080/app/mock/256965/api/chat/list');
+      final response = await http
+          .get('http://rap2.taobao.org:38080/app/mock/256965/api/chat/list', timeOut: 6000);
       if (response.statusCode == 200) {
-        final responseBody = json.decode(response.body);
+        final responseBody = response.data;
         _chatList = responseBody['chatList']
             .map<Chat>((item) => Chat.formJson(item))
             .toList();
       } else {
-        throw Exception('${response.reasonPhrase}');
+        throw Exception('${response.statusMessage}');
       }
     } catch (e) {
-      throw Exception('${e.reasonPhrase}');
+      _cancelToken.cancel();
+      throw Exception('错误信息');
     } finally {
-      client.close();
       setState(() {
         _loading = false;
       });
