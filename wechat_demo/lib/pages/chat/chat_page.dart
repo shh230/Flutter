@@ -44,7 +44,7 @@ class _ChatPageState extends State<ChatPage>
     });
     try {
       final response = await http.get(
-          'http://rap2.taobao.org:38080/app/mock/256965/api/chat/list',
+          'http://rap2api.taobao.org/app/mock/256965/api/chat/list',
           timeOut: 6000);
       print('网络请求');
       if (response.statusCode == 200) {
