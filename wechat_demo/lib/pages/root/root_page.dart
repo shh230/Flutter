@@ -45,7 +45,7 @@ class _RootPageState extends State<RootPage> {
           fixedColor: Colors.green,
           items: [
             BottomNavigationBarItem(
-              label: '微信',
+              title: Text('微信'),
               icon: Image.asset(
                 'images/tabbar_chat.png',
                 height: 20,
@@ -58,7 +58,7 @@ class _RootPageState extends State<RootPage> {
               ),
             ),
             BottomNavigationBarItem(
-              label: '通讯录',
+              title: Text('通讯录'),
               icon: Image.asset(
                 'images/tabbar_friends.png',
                 height: 20,
@@ -71,7 +71,7 @@ class _RootPageState extends State<RootPage> {
               ),
             ),
             BottomNavigationBarItem(
-              label: '发现',
+              title: Text('发现'),
               icon: Image.asset(
                 'images/tabbar_discover.png',
                 height: 20,
@@ -84,7 +84,7 @@ class _RootPageState extends State<RootPage> {
               ),
             ),
             BottomNavigationBarItem(
-              label: '我',
+              title: Text('我'),
               icon: Image.asset(
                 'images/tabbar_mine.png',
                 height: 20,
